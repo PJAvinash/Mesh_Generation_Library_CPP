@@ -4,3 +4,6 @@ In this project we plan to implement a mesh generation algorithms for 2D and 3D 
 **contributors**
 - PJ Avinash
 - Akhila Petnikota
+**contact-email**
+- petnikotaakhila@gmail.com
+- avinashindian2.0@gmail.com
