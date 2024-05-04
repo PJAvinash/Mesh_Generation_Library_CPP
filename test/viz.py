@@ -38,4 +38,5 @@ ax.scatter(x, y, z, c='r', marker='o')
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
+
 plt.show()
