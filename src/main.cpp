@@ -5,8 +5,9 @@
 #include <CGAL/Mesh_criteria_3.h>
 #include <CGAL/Labeled_mesh_domain_3.h>
 #include <CGAL/make_mesh_3.h>
-#include <CGAL/Qt/TriangulationGraphicsItem.h>
-#include <CGAL/Qt/Basic_viewer_qt.h>
+#include <CGAL/IO/File_binary_mesh_3.h>
+#include <CGAL/IO/File_tetgen.h>
+#include <CGAL/draw.h>
 
 // Domain
 typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
@@ -45,8 +46,12 @@ int main()
   // Output
   std::ofstream medit("out.mesh");
   CGAL::IO::write_MEDIT(medit, c3t3);
-  std::ofstream avizo("out.am");
-  CGAL::IO::output_to_avizo(avizo,c3t3);
-  output.close();
+  medit.close();
+  CGAL::draw(c3t3);
+
+//   std::ofstream bin("out.binary.cgal");
+//   CGAL::IO::save_binary_file(bin,c3t3);
+//   CGAL::IO::output_to_tetgen("tetgen",c3t3);
+  
   return 0;
 }
