@@ -21,6 +21,8 @@ In this project, we plan to implement mesh generation algorithms for 2D and 3D s
 
 ![Distorted sphere along with few other sphere](results/Figure_1.png)
 
+![Random](results/Figure_6.png)
+
 ## Future plans
 - add support for multi-threading 
 - OpenCL / CUDA-based functions 
