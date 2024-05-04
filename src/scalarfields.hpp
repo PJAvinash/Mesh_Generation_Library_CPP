@@ -14,8 +14,8 @@ float sineWaveScalarFunction(int x, int y, int z)
     return scalar_value;
 }
 
-const float r1 = 30.0f; // Radius of the sphere
-const float r2 = 15.0f;
+const float r1 = 20.0f; // Radius of the sphere
+const float r2 = 7.0f;
 ScalarFunction sphere1 = [](int x, int y, int z) -> float
 {
     float a = (x * x + y * y + z * z - r1 * r1);

@@ -15,9 +15,15 @@ In this project, we plan to implement mesh generation algorithms for 2D and 3D s
  ```
 
 ## Test results
+![Sphere in sphere](results/sphere_in_sphere_mesh.png)
+
 ![Ball on top of xy+yz+zx = c](results/BallOnTop.png)
 
+![Ball on top of xy+yz+zx = c with edges](results/ball_on_top_40_40_40_edges.png)
+
 ![Distorted sphere along with few other sphere](results/Figure_1.png)
+
+![Random](results/Figure_6.png)
 
 ## Future plans
 - add support for multi-threading 

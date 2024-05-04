@@ -237,7 +237,8 @@ int main(int argc, char *argv[])
     //generateMarchingCubeVertices(grid_params_3d(1000, 1000, 1000), sphere, 0, mesh_indices);
     std::vector< triangle_3d<float> > Triangles = {};
     //generateMeshFromScalarField(point_3d<int>(-40,-40,-40),grid_params_3d(40,40,40),randomtest,1,Triangles);
-    generateMeshFromScalarField(point_3d<int>(0,0,0),grid_params_3d(30,30,30),warm,0,Triangles);
+    //generateMeshFromScalarField(point_3d<int>(0,0,0),grid_params_3d(30,30,30),warm,0,Triangles);
+    generateMeshFromScalarField(point_3d<int>(0,0,0),grid_params_3d(20,20,20),sphere1,0,Triangles);
     saveTrianglesToCSV("../test/MCsphere.txt",Triangles);
     return 0;
 }
