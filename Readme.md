@@ -1,5 +1,5 @@
 # Mesh Generation Library implementation in C++ 
-In this project we plan to implement a mesh generation algorithms for 2D and 3D shapes in c++.
+In this project, we plan to implement mesh generation algorithms for 2D and 3D shapes in C++.
 
 ## Algorithm
  - Marching Cubes
@@ -15,15 +15,15 @@ In this project we plan to implement a mesh generation algorithms for 2D and 3D 
  ```
 
 ## Test results
-![Ball on top of xy+yz+zx = c](Mesh_Generation_Library_CPP/results/BallOnTop.png)
+![Ball on top of xy+yz+zx = c](results/BallOnTop.png)
 
-![Distorted sphere along with few other sphere](Mesh_Generation_Library_CPP/results/Figure_1.png)
+![Distorted sphere along with few other sphere](results/Figure_1.png)
 
 ## Future plans
-- add support for multi threading 
-- OpenCL / CUDA based functions 
-- adition of better interpolation functions
-- support for  IO (.ply , .obj, .mesh )
+- add support for multi-threading 
+- OpenCL / CUDA-based functions 
+- addition of better interpolation functions
+- support for  IO (.ply, .obj, .mesh )
 
 
 
