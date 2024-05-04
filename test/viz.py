@@ -6,6 +6,7 @@ from mpl_toolkits.mplot3d import Axes3D
 def read_triangles_from_file(filename):
     triangles = []
     point_set = []
+    edge_set = []
     with open(filename, 'r') as file:
         for line in file:
             # Split each line by '[' and ']' to extract coordinates
@@ -20,23 +21,87 @@ def read_triangles_from_file(filename):
                 triangle.append([x,y,z])
                 point_set.append([x,y,z])
             triangles.append(triangle)
-    return (point_set,triangles)
+            edge_set.append([triangle[0],triangle[1]])
+            edge_set.append([triangle[1],triangle[2]])
+            edge_set.append([triangle[2],triangle[0]])
+    return (point_set,triangles,edge_set)
 # Read triangles from text file
  
-points,triangles = read_triangles_from_file('MCSphere.txt')
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
+points,triangles,edge_set = read_triangles_from_file('MCSphere.txt')
 
-# Extract coordinates
-x = [t[0] for t in points]
-y = [t[1] for t in points]
-z = [t[2] for t in points]
 
-# Plot points
-ax.scatter(x, y, z, c='r', marker='o')
+def plot_traingle_points(point_set):
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
 
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
+    # Extract coordinates
+    x = [t[0] for t in point_set]
+    y = [t[1] for t in point_set]
+    z = [t[2] for t in point_set]
 
-plt.show()
+    # Plot points
+    ax.scatter(x, y, z, c='r', marker='o')
+
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+    plt.show()
+
+# plot_traingle_points(points)
+
+def plot_line_segments(segments):
+    """
+    Plot line segments in 3D space.
+    
+    Parameters:
+        segments (array-like): Array where each row represents a line segment,
+            with each row containing the coordinates of the starting and ending
+            points of the segment.
+    """
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    for segment in segments:
+        ax.plot3D(*zip(*segment), marker='o')
+  
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+    plt.show()
+
+
+def plot_line_segments2(segments):
+    """
+    Plot line segments in 3D space.
+    
+    Parameters:
+        segments (array-like): Array where each row represents a line segment,
+            with each row containing the coordinates of the starting and ending
+            points of the segment.
+    """
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+
+    # Combine coordinates of all line segments
+    all_x = []
+    all_y = []
+    all_z = []
+    for segment in segments:
+        start, end = segment
+        x_values = [start[0], end[0]]
+        y_values = [start[1], end[1]]
+        z_values = [start[2], end[2]]
+        all_x.extend(x_values)
+        all_y.extend(y_values)
+        all_z.extend(z_values)
+
+    # Plot all line segments in a single call
+    ax.plot3D(all_x, all_y, all_z, marker='o')
+
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+    plt.show()
+
+
+plot_line_segments(edge_set)
+
