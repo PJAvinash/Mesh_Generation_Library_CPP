@@ -1,57 +1,29 @@
 #include <iostream>
-#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
-#include <CGAL/Mesh_triangulation_3.h>
-#include <CGAL/Mesh_complex_3_in_triangulation_3.h>
-#include <CGAL/Mesh_criteria_3.h>
-#include <CGAL/Labeled_mesh_domain_3.h>
-#include <CGAL/make_mesh_3.h>
-#include <CGAL/IO/File_binary_mesh_3.h>
-#include <CGAL/IO/File_tetgen.h>
-#include <CGAL/draw.h>
+#include <vector>
+#include "../include/mcalgorithm.hpp"
+#include <thread>
+#include <chrono>
 
-// Domain
-typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
-typedef K::FT FT;
-typedef K::Point_3 Point;
-typedef FT (Function)(const Point&);
-typedef CGAL::Labeled_mesh_domain_3<K> Mesh_domain;
-#ifdef CGAL_CONCURRENT_MESH_3
-typedef CGAL::Parallel_tag Concurrency_tag;
-#else
-typedef CGAL::Sequential_tag Concurrency_tag;
-#endif
-
-// Triangulation
-typedef CGAL::Mesh_triangulation_3<Mesh_domain,CGAL::Default,Concurrency_tag>::type Tr;
-typedef CGAL::Mesh_complex_3_in_triangulation_3<Tr> C3t3;
-// Criteria
-typedef CGAL::Mesh_criteria_3<Tr> Mesh_criteria;
-namespace params = CGAL::parameters;
-
-
-
-// Function
-FT sphere_function (const Point& p)
-{ return CGAL::squared_distance(p, Point(CGAL::ORIGIN))-1; }
-int main()
+int main(int argc, char *argv[])
 {
-  Mesh_domain domain =
-    Mesh_domain::create_implicit_mesh_domain( sphere_function,
-                                              K::Sphere_3(CGAL::ORIGIN, K::FT(2)));
-  // Mesh criteria
-  Mesh_criteria criteria(params::facet_angle(30).facet_size(0.1).facet_distance(0.025).
-                         cell_radius_edge_ratio(2).cell_size(0.1));
-  // Mesh generation
-  C3t3 c3t3 = CGAL::make_mesh_3<C3t3>(domain, criteria);
-  // Output
-  std::ofstream medit("out.mesh");
-  CGAL::IO::write_MEDIT(medit, c3t3);
-  medit.close();
-  CGAL::draw(c3t3);
-
-//   std::ofstream bin("out.binary.cgal");
-//   CGAL::IO::save_binary_file(bin,c3t3);
-//   CGAL::IO::output_to_tetgen("tetgen",c3t3);
-  
-  return 0;
+    std::vector<std::vector<std::vector<float>>> computedValues;
+    std::vector<std::vector<std::vector<u_int8_t>>> mesh_indices;
+    // computeGridPoints(grid_params_3d(100, 100, 100), sphere, computedValues);
+    //printf("Bits\n");
+    auto start_time = std::chrono::high_resolution_clock::now();
+    //generateMarchingCubeVertices(grid_params_3d(1000, 1000, 1000), sphere, 0, mesh_indices);
+    std::vector< triangle_3d<float> > Triangles = {};
+    generateMeshFromScalarField(grid_params_3d(-80,-80,-80,80,80,80),randomtest,1,Triangles);
+    //generateMeshFromScalarField(point_3d<int>(0,0,0),grid_params_3d(30,30,30),warm,0,Triangles);
+    //generateMeshFromScalarField(grid_params_3d(0,0,0,20,20,20),sphere1,0,Triangles);
+   //generateMeshFromScalarFieldParallel(8,grid_params_3d(-100,-100,-100,100,100,100),warm,0,Triangles);
+    //generateMeshFromScalarField(grid_params_3d(-10,-10,-10,10,10,10),sphere1,0,Triangles);
+    auto end_time = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
+    std::cout << "Time taken: " << duration.count() << " milliseconds" << std::endl;
+    mesh_surface<float> ms;
+    generate_surface_mesh_ply<float>(Triangles,ms.vertices,ms.edge_vertex_indices,ms.triangle_vertex_indices);
+    saveTrianglesToCSV("../test/triangles.txt",Triangles);
+    write_mesh_surface_to_ply(ms,"../test/mesh.ply");
+    return 0;
 }

@@ -25,11 +25,15 @@ In this project, we plan to implement mesh generation algorithms for 2D and 3D s
 
 ![Random](results/Figure_6.png)
 
+## Existing features
+- supports multiple threads
+- function to export to .ply 
+- use open3d ( python lib) for visualization 
+
 ## Future plans
-- add support for multi-threading 
 - OpenCL / CUDA-based functions 
 - addition of better interpolation functions
-- support for  IO (.ply, .obj, .mesh )
+- support for  IO (.obj, .mesh )
 
 
 

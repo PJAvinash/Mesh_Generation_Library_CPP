@@ -103,5 +103,22 @@ def plot_line_segments2(segments):
     plt.show()
 
 
-plot_line_segments(edge_set)
+def visualize_triangles(Traingles):
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    for triangle in Traingles:
+        vertices = np.array(triangle)
+        x = vertices[:, 0]
+        y = vertices[:, 1]
+        z = vertices[:, 2]
+        ax.plot_trisurf(x, y, z, linewidth=0.2, antialiased=True)
 
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+    plt.title('3D Triangles Visualization')
+
+    plt.show()
+
+plot_line_segments(edge_set)
+#visualize_triangles(triangles)
