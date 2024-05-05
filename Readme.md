@@ -12,6 +12,8 @@ In this project, we plan to implement mesh generation algorithms for 2D and 3D s
  **visualization[in test/]**
  ```
  python3 viz.py
+
+ python3 vizply.py <ply filepath>
  ```
 
 ## Test results
