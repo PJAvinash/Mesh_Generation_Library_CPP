@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import sys
 
 # Function to read triangles from text file
 def read_triangles_from_file(filename):
@@ -27,7 +28,7 @@ def read_triangles_from_file(filename):
     return (point_set,triangles,edge_set)
 # Read triangles from text file
  
-points,triangles,edge_set = read_triangles_from_file('MCSphere.txt')
+
 
 
 def plot_traingle_points(point_set):
@@ -117,8 +118,14 @@ def visualize_triangles(Traingles):
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
     plt.title('3D Triangles Visualization')
-
     plt.show()
 
-plot_line_segments(edge_set)
-#visualize_triangles(triangles)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python viz.py <file_name>")
+    else:
+        file_path = sys.argv[1]
+        points,triangles,edge_set = read_triangles_from_file(file_path)
+        plot_line_segments(edge_set)

@@ -6,20 +6,24 @@ In this project, we plan to implement mesh generation algorithms for 2D and 3D s
 
 **compilation and execution [in src]**
  ```
-   g++ -std=c++14 -o marchingcubes marchingcubes.cpp
+   g++ -std=c++14 -o marchingcubes main.cpp
    ./marchingcubes
  ```
  **visualization[in test/]**
  ```
- python3 viz.py
-
+ python3 viz.py <.txt filepath>
  python3 vizply.py <ply filepath>
  ```
 
 ## Test results
-![Sphere in sphere](results/sphere_in_sphere_mesh.png)
+**Ring torus(https://3dviewer.net/)**
+![Ring torus](results/ringtorus.png)
 
-![Ball on top of xy+yz+zx = c](results/BallOnTop.png)
+**Ring torus using open 3d**
+![Ring torus](results/Ringtorus_open3d.png)
+
+**sphere in sphere**
+![Sphere in sphere](results/sphere_in_sphere_mesh.png)
 
 ![Ball on top of xy+yz+zx = c with edges](results/ball_on_top_40_40_40_edges.png)
 

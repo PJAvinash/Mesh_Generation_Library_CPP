@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     auto start_time = std::chrono::high_resolution_clock::now();
     //generateMarchingCubeVertices(grid_params_3d(1000, 1000, 1000), sphere, 0, mesh_indices);
     std::vector< triangle_3d<float> > Triangles = {};
-    generateMeshFromScalarField(grid_params_3d(-80,-80,-80,80,80,80),randomtest,1,Triangles);
+    generateMeshFromScalarField(grid_params_3d(-80,-80,-80,80,80,80),ringtorus,1,Triangles);
     //generateMeshFromScalarField(point_3d<int>(0,0,0),grid_params_3d(30,30,30),warm,0,Triangles);
     //generateMeshFromScalarField(grid_params_3d(0,0,0,20,20,20),sphere1,0,Triangles);
    //generateMeshFromScalarFieldParallel(8,grid_params_3d(-100,-100,-100,100,100,100),warm,0,Triangles);
